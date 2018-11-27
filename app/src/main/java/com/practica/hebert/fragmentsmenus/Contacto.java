@@ -26,7 +26,7 @@ public class Contacto extends AppCompatActivity {
     private EditText edtNombreUsuario, edtCorreo, edtMensaje ;
     private TextInputLayout tilNombreUsuario, tilCorreo, tilMensaje ;
     final private String correo = CorreoContrasena.correo ;
-    final private String contraseña = CorreoContrasena.contraseña ;
+    final private String contraseña = CorreoContrasena.contrasena ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
