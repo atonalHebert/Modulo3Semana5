@@ -19,8 +19,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/cardview_texto"
-        android:text="Práctica de la semana 4 del módulo 3."/>
+        android:textSize="30dp"
+        android:text="Eduardo Germán María Hughes Galeano (Montevideo, Uruguay, 3 de septiembre de 1940 - ib., 13 de abril de 2015),1​ fue un periodista y escritor uruguayo, ganador del premio Stig Dagerman, considerado como uno de los más destacados artistas de la literatura latinoamericana."/>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
