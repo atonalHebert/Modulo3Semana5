@@ -12,45 +12,44 @@ import android.view.ViewGroup;
 import com.practica.hebert.fragmentsmenus.R;
 import com.practica.hebert.fragmentsmenus.adapters.MascotaAdapter;
 import com.practica.hebert.fragmentsmenus.pojo.Mascota;
+import com.practica.hebert.fragmentsmenus.presentador.IListaMascotasPresenter;
+import com.practica.hebert.fragmentsmenus.presentador.ListaMascotasPresenter;
 
 import java.util.ArrayList;
 
-public class ListaMascotas extends Fragment {
+public class ListaMascotas extends Fragment implements IListaMascotas {
 
     private ArrayList<Mascota> mascotas ;
     private RecyclerView rvMascotas ;
+    private IListaMascotasPresenter presenter ;
 
-    public ListaMascotas() {
-        // Required empty public constructor
-    }
+    public ListaMascotas() {}// Required empty public constructor
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_lista_mascotas, container, false);
-        // Inflate the layout for this fragment
         rvMascotas = (RecyclerView) v.findViewById(R.id.rvMascotas) ;
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity()) ;
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        rvMascotas.setLayoutManager(llm) ;
-        listaMascotas() ;
-        inicializarAdaptador() ;
+        presenter = new ListaMascotasPresenter(this, getContext()) ;
         return v;
     } // fin del método onCreateView
 
-    private void inicializarAdaptador() {
-        MascotaAdapter adapter = new MascotaAdapter(mascotas, getActivity()) ;
-        rvMascotas.setAdapter(adapter);
-    } // fin del método inicializarAdaptador
+    @Override
+    public void generarLinearLayoutVertical() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity()) ;
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        rvMascotas.setLayoutManager(llm) ;
+    } // fin del método generarLinearLayoutVertical
 
-    private void listaMascotas() {
-        mascotas = new ArrayList<Mascota>() ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 5)) ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 4)) ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 3)) ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 2)) ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 1)) ;
-        mascotas.add(new Mascota(R.drawable.bulbasaur, "Bulbasaur" , (byte) 0)) ;
-    } // fin del método listaMascotas
+    @Override
+    public MascotaAdapter crearAdaptador(ArrayList<Mascota> mascotas) {
+        MascotaAdapter adapter = new MascotaAdapter(mascotas, getActivity()) ;
+        return adapter ;
+    } // fin del método crearAdaptador
+
+    @Override
+    public void inicializarAdaptadorRV(MascotaAdapter adapter) {
+        rvMascotas.setAdapter(adapter);
+    } // fin del método inicializarAdaptadorRV
 } // fin de la clase ListaMascotas

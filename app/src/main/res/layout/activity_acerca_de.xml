@@ -9,7 +9,8 @@
 
     <include
         android:id="@+id/toolbar"
-        layout="@layout/appbar"></include>
+        layout="@layout/appbar"
+        ></include>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
